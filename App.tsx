@@ -1,45 +1,40 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useEffect } from 'react'
+import { Provider, useDispatch, useSelector } from 'react-redux'
+import { store, RootState, AppDispatch } from './src/stores'
+import LoginScreen from './src/screens/LoginScreen'
+import HomeScreen from './src/screens/HomeScreen'
+import { restoreSession } from './src/stores/authSlice'
+import { setupPlayer } from './src/services/player/setupPlayer'
+import { registerTrackEvents } from './src/services/player/events'
+import MiniPlayer from './src/components/player/MiniPlayer'
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+function Root() {
 
-  return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
+  useEffect(() => {
+  registerTrackEvents()
+  setupPlayer()
+}, [])
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
+  const dispatch = useDispatch<AppDispatch>()
+  const token = useSelector((s: RootState) => s.auth.token)
+
+  useEffect(() => {
+    dispatch(restoreSession())
+  }, [])
 
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
+    <>
+    {token ? <HomeScreen /> : <LoginScreen />}
+    {token && <MiniPlayer />}
+    </>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Root />
+    </Provider>
+  )
+}
