@@ -25,9 +25,5 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
-      <service
-  android:name="com.doublesymmetry.trackplayer.service.MusicService"
-  android:foregroundServiceType="mediaPlayback"
-  android:exported="false" />
     </application>
 </manifest>

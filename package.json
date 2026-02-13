@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@jamsch/react-native-track-player": "^4.1.8",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native/new-app-screen": "0.84.0",
     "@react-navigation/native": "^7.1.28",
@@ -20,7 +21,6 @@
     "react-native": "0.84.0",
     "react-native-device-info": "^15.0.1",
     "react-native-safe-area-context": "^5.5.2",
-    "react-native-track-player": "^4.1.2",
     "react-redux": "^9.2.0"
   },
   "devDependencies": {

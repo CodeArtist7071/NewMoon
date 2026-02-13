@@ -1,11 +1,12 @@
-import TrackPlayer from 'react-native-track-player'
+import TrackPlayer, { Event } from '@jamsch/react-native-track-player'
+
 
 module.exports = async function () {
-  TrackPlayer.addEventListener(, () => {
+  TrackPlayer.addEventListener(Event.RemotePlay, () => {
     TrackPlayer.play()
   })
 
-  TrackPlayer.addEventListener('remote-pause', () => {
+  TrackPlayer.addEventListener(Event.RemotePause, () => {
     TrackPlayer.pause()
   })
 }

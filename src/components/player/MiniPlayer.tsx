@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Button } from 'react-native'
 import { useDispatch } from 'react-redux'
-import TrackPlayer from 'react-native-track-player'
 import { nextTrack, previousTrack } from '../../stores/playerSlice'
 import { AppDispatch } from '../../stores'
+import TrackPlayer from '@jamsch/react-native-track-player'
 
 const MiniPlayer = () => {
   const dispatch = useDispatch<AppDispatch>()

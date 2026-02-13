@@ -1,4 +1,4 @@
-import TrackPlayer from 'react-native-track-player'
+import TrackPlayer from '@jamsch/react-native-track-player'
 import { getStreamUrl } from '../jellyfin/playback'
 
 export const playQueue = async (
